@@ -1,68 +1,32 @@
 {
-  "1": {
-    "inputs": {
-      "ckpt_name": "noobaiXLNAIXL_vPred065SVersion.safetensors"
-    },
-    "class_type": "CheckpointLoaderSimple"
-  },
-  "2": {
-    "inputs": {
-      "stop_at_clip_layer": -2,
-      "clip": [
-        "1",
-        1
-      ]
-    },
-    "class_type": "CLIPSetLastLayer"
-  },
   "3": {
     "inputs": {
-      "text": "masterpiece, best quality, {userprompt}",
-      "clip": [
-        "2",
-        0
-      ]
-    },
-    "class_type": "CLIPTextEncode"
-  },
-  "4": {
-    "inputs": {
-      "text": "lowres, worst quality, low quality, bad anatomy, bad hands, 4koma, comic, greyscale, censored, jpeg artifacts, overly saturated, overly vivid,nfsw",
-      "clip": [
-        "2",
-        0
-      ]
-    },
-    "class_type": "CLIPTextEncode"
-  },
-  "5": {
-    "inputs": {
-      "seed": 547567605400048,
-      "steps": 30,
-      "cfg": 5,
+      "seed": 21766527544825,
+      "steps": 27,
+      "cfg": 7,
       "sampler_name": "euler",
       "scheduler": "normal",
       "denoise": 1,
       "model": [
-        "10",
+        "16",
         0
       ],
       "positive": [
-        "3",
+        "6",
         0
       ],
       "negative": [
-        "4",
+        "7",
         0
       ],
       "latent_image": [
-        "6",
+        "5",
         0
       ]
     },
     "class_type": "KSampler"
   },
-  "6": {
+  "5": {
     "inputs": {
       "width": 1216,
       "height": 832,
@@ -70,58 +34,48 @@
     },
     "class_type": "EmptyLatentImage"
   },
-  "8": {
+  "6": {
     "inputs": {
-      "vae_name": "sdxl_vae.safetensors"
-    },
-    "class_type": "VAELoader"
-  },
-  "10": {
-    "inputs": {
-      "sampling": "v_prediction",
-      "zsnr": true,
-      "model": [
-        "1",
-        0
+      "text": "masterpiece,best quality,{userprompt}",
+      "clip": [
+        "16",
+        1
       ]
     },
-    "class_type": "ModelSamplingDiscrete"
+    "class_type": "CLIPTextEncode"
+  },
+  "7": {
+    "inputs": {
+      "text": "worst quality, bad hands,bad quality,bad anatomy,jpeg artifacts,signature,scan,watermark,old,oldest\n",
+      "clip": [
+        "16",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode"
   },
   "11": {
     "inputs": {
-      "upscale_method": "nearest-exact",
-      "width": 1824,
-      "height": 1248,
-      "crop": "disabled",
-      "samples": [
-        "5",
-        0
-      ]
-    },
-    "class_type": "LatentUpscale"
-  },
-  "12": {
-    "inputs": {
-      "seed": 545931358687095,
-      "steps": 12,
+      "seed": 291874366664079,
+      "steps": 13,
       "cfg": 7,
-      "sampler_name": "euler",
-      "scheduler": "simple",
-      "denoise": 0.5,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "normal",
+      "denoise": 0.6,
       "model": [
-        "10",
+        "16",
         0
       ],
       "positive": [
-        "3",
+        "6",
         0
       ],
       "negative": [
-        "4",
+        "7",
         0
       ],
       "latent_image": [
-        "11",
+        "19",
         0
       ]
     },
@@ -130,17 +84,34 @@
   "13": {
     "inputs": {
       "samples": [
-        "12",
+        "11",
         0
       ],
       "vae": [
-        "8",
-        0
+        "16",
+        2
       ]
     },
     "class_type": "VAEDecode"
   },
-  "14": {
+  "16": {
+    "inputs": {
+      "ckpt_name": "Illustrious-XL-v0.1.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "19": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "scale_by": 1.6,
+      "samples": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "LatentUpscaleBy"
+  },
+  "21": {
     "inputs": {
       "images": [
         "13",

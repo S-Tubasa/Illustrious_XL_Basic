@@ -25,7 +25,7 @@ time python main.py --mode 1 --prompt "Yumekawa Tenshi's cute angel is flying in
 ```
 NVIDIA L40S
 ```
-
+{userprompt}
 ```
 
 ### Portait
