@@ -16,6 +16,9 @@ pip install websocket-client
 cd models/checkpoints
 wget https://huggingface.co/OnomaAIResearch/Illustrious-xl-early-release-v0/resolve/main/Illustrious-XL-v0.1.safetensors
 
+cd custom_nodes
+git clone https://github.com/KohakuBlueleaf/z-tipo-extension.git
+
 ```
 
 ## Example
