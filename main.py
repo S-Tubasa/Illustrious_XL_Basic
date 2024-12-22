@@ -36,7 +36,7 @@ def get_images(ws, prompt, server_address, client_id):
                     else:
                         current_node = data["node"]
         else:
-            if current_node == "21":
+            if current_node == "save_image_websocket_node":
                 images_output = output_images.get(current_node, [])
                 images_output.append(out[8:])
                 output_images[current_node] = images_output
@@ -79,7 +79,11 @@ def main_prosess(prompt, mode, save_path):
     data = {
         "prompt": prompt,
         "mode": int(mode),
-        "seed": [random.getrandbits(64), random.getrandbits(64)],
+        "seed": [
+            random.getrandbits(64),
+            random.getrandbits(64),
+            random.getrandbits(64),
+        ],
     }
 
     # =======================
@@ -109,11 +113,12 @@ def main_prosess(prompt, mode, save_path):
 
     # ===Update prompt with user data===
 
-    prompt["6"]["inputs"]["text"] = prompt["6"]["inputs"]["text"].format(
+    prompt["18"]["inputs"]["nl_prompt"] = prompt["18"]["inputs"]["nl_prompt"].format(
         userprompt=data["prompt"]
     )
-    prompt["3"]["inputs"]["seed"] = data["seed"][0]
-    prompt["11"]["inputs"]["seed"] = data["seed"][1]
+    prompt["5"]["inputs"]["seed"] = data["seed"][0]
+    prompt["12"]["inputs"]["seed"] = data["seed"][1]
+    prompt["18"]["inputs"]["seed"] = data["seed"][2]
 
     # =======================
 

@@ -1,81 +1,82 @@
 {
-  "3": {
+  "1": {
     "inputs": {
-      "seed": 21766527544825,
-      "steps": 27,
-      "cfg": 7,
-      "sampler_name": "euler",
+      "ckpt_name": "Illustrious-XL-v0.1.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "4": {
+    "inputs": {
+      "text": "lowres,bad anatomy,blurry,(worst quality:1.8),low quality,hands bad,(normal quality:1.3),bad hands,mutated hands and fingers,extra legs,extra arms,duplicate,cropped,jpeg,artifacts,long body,multiple breasts,mutated,disfigured,bad proportions,bad feet,ugly,text font ui,missing limb,monochrome,face bad,4koma,comic,nfsw",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "5": {
+    "inputs": {
+      "seed": 254323474956049,
+      "steps": 30,
+      "cfg": 5,
+      "sampler_name": "euler_ancestral",
       "scheduler": "normal",
       "denoise": 1,
       "model": [
-        "16",
+        "1",
         0
       ],
       "positive": [
-        "6",
+        "21",
         0
       ],
       "negative": [
-        "7",
+        "4",
         0
       ],
       "latent_image": [
-        "5",
+        "15",
         0
       ]
     },
     "class_type": "KSampler"
   },
-  "5": {
-    "inputs": {
-      "width": 1216,
-      "height": 832,
-      "batch_size": 1
-    },
-    "class_type": "EmptyLatentImage"
-  },
-  "6": {
-    "inputs": {
-      "text": "masterpiece,best quality,{userprompt}",
-      "clip": [
-        "16",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode"
-  },
-  "7": {
-    "inputs": {
-      "text": "worst quality, bad hands,bad quality,bad anatomy,jpeg artifacts,signature,scan,watermark,old,oldest\n",
-      "clip": [
-        "16",
-        1
-      ]
-    },
-    "class_type": "CLIPTextEncode"
-  },
   "11": {
     "inputs": {
-      "seed": 291874366664079,
-      "steps": 13,
+      "upscale_method": "nearest-exact",
+      "width": 1824,
+      "height": 1248,
+      "crop": "disabled",
+      "samples": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "LatentUpscale"
+  },
+  "12": {
+    "inputs": {
+      "seed": 517616761617993,
+      "steps": 12,
       "cfg": 7,
       "sampler_name": "euler_ancestral",
-      "scheduler": "normal",
-      "denoise": 0.6,
+      "scheduler": "simple",
+      "denoise": 0.5,
       "model": [
-        "16",
+        "1",
         0
       ],
       "positive": [
-        "6",
+        "21",
         0
       ],
       "negative": [
-        "7",
+        "4",
         0
       ],
       "latent_image": [
-        "19",
+        "11",
         0
       ]
     },
@@ -84,34 +85,58 @@
   "13": {
     "inputs": {
       "samples": [
-        "11",
+        "12",
         0
       ],
       "vae": [
-        "16",
+        "1",
         2
       ]
     },
     "class_type": "VAEDecode"
   },
-  "16": {
+  "15": {
     "inputs": {
-      "ckpt_name": "Illustrious-XL-v0.1.safetensors"
+      "width": 1216,
+      "height": 832,
+      "batch_size": 1
     },
-    "class_type": "CheckpointLoaderSimple"
+    "class_type": "EmptyLatentImage"
   },
-  "19": {
+  "18": {
     "inputs": {
-      "upscale_method": "nearest-exact",
-      "scale_by": 1.6,
-      "samples": [
-        "3",
-        0
-      ]
+      "tags": "masterpiece, sensitive, best quality",
+      "nl_prompt": "{userprompt}",
+      "ban_tags": "text, censor, speech, say, comic, panel",
+      "tipo_model": "KBlueLeaf/TIPO-200M-ft | TIPO-200M-ft-F16.gguf",
+      "format": "\n<|characters|>, <|copyrights|>, \n<|artist|>, \n\n<|general|>,\n\n<|extended|>.\n\n<|quality|>, <|meta|>, <|rating|>",
+      "width": 1216,
+      "height": 832,
+      "temperature": 0.75,
+      "top_p": 0.9500000000000001,
+      "min_p": 0.05,
+      "top_k": 80,
+      "tag_length": "short",
+      "nl_length": "short",
+      "seed": 626,
+      "device": "cuda"
     },
-    "class_type": "LatentUpscaleBy"
+    "class_type": "TIPO"
   },
   "21": {
+    "inputs": {
+      "text": [
+        "18",
+        0
+      ],
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "save_image_websocket_node": {
     "inputs": {
       "images": [
         "13",
